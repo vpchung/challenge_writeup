@@ -37,6 +37,8 @@ steps:
         source: "#submissionId"
       - id: synapse_config
         source: "#synapseConfig"
+      -id: project_id
+        valueFrom: "syn20940518"
       - id: public
         default: true
     out:
