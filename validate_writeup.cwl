@@ -93,7 +93,7 @@ requirements:
                 "Visit https://docs.synapse.org/articles/sharing_settings.html for " +
                 "more details.")
 
-          except synapseclient.exceptions.SynapseHTTPError as e:
+          except synapseclient.core.exceptions.SynapseHTTPError as e:
             if e.response.status_code == 403:
               errors.append("Submission is private; please update its sharing settings.")
             
