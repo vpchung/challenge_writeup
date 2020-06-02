@@ -38,7 +38,7 @@ steps:
       - id: synapse_config
         source: "#synapseConfig"
       - id: project_id
-        valueFrom: "syn20940518"
+        valueFrom: "syn18065891"
       - id: public
         default: true
     out:
