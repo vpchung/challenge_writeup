@@ -52,7 +52,7 @@ requirements:
           syn.login(silent=True)
           
           writeup = syn.getSubmission(args.submission_id)
-          name = writeup.name.replace("&", "+").replace("'", "")
+          name = writeup.entity.name.replace("&", "+").replace("'", "")
           curr_time = int(round(time.time() * 1000))
           new_project = Project(f"Archived {name} {curr_time} {writeup.id} " +
                                 f"{writeup.entityId}")
