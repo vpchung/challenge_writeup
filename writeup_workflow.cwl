@@ -94,6 +94,8 @@ steps:
         source: "#submissionId"
       - id: synapse_config
         source: "#synapseConfig"
+      - id: admin
+        valueFrom: "3401978"
     out:
       - id: results
 

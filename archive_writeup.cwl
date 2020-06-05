@@ -12,6 +12,8 @@ inputs:
     type: int
   - id: synapse_config
     type: File
+  - id: admin
+    type: string
 
 
 arguments:
@@ -22,6 +24,8 @@ arguments:
     prefix: -c
   - valueFrom: results.json
     prefix: -o
+  - valueFrom: $(inputs.admin)
+    prefix: -a
 
 requirements:
   - class: InlineJavascriptRequirement
@@ -40,6 +44,7 @@ requirements:
           parser = argparse.ArgumentParser()
           parser.add_argument("-s", "--submission_id", required=True)
           parser.add_argument("-c", "--config", required=True)
+          parser.add_argument("-a", "--admin", required=True)
           parser.add_argument("-o", "--results", default="results.json")
           args = parser.parse_args()
 
@@ -52,6 +57,8 @@ requirements:
           new_project = Project(f"Archived {name} {curr_time} {writeup.id} " +
                                 f"{writeup.entityId}")
           archive = syn.store(new_project)
+          syn.setPermissions(syn, principalId=args.admin, accessType=['DELETE', 'CHANGE_SETTINGS', 'MODERATE', 'CREATE', 'READ',
+         'DOWNLOAD', 'UPDATE', 'CHANGE_PERMISSIONS'])
           archived = synapseutils.copy(syn, writeup.entityId, archive.id)
           annot = {"archived": archived.get(writeup.entityId)}
           with open(args.results, "w") as out:
