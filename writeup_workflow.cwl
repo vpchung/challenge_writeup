@@ -91,7 +91,7 @@ steps:
     run: archive_writeup.cwl
     in:
       - id: submission_id
-         source: "#submissionId"
+        source: "#submissionId"
       - id: synapse_config
         source: "#synapseConfig"
     out:
