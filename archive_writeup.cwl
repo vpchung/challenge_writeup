@@ -57,8 +57,7 @@ requirements:
           new_project = Project(f"Archived {name} {curr_time} {writeup.id} " +
                                 f"{writeup.entityId}")
           archive = syn.store(new_project)
-          syn.setPermissions(archive, principalId=args.admin, accessType=['DELETE', 'CHANGE_SETTINGS', 'MODERATE', 'CREATE', 'READ',
-         'DOWNLOAD', 'UPDATE', 'CHANGE_PERMISSIONS'])
+          syn.setPermissions(archive, principalId=args.admin, accessType=['DELETE', 'CHANGE_SETTINGS', 'MODERATE', 'CREATE', 'READ', 'DOWNLOAD', 'UPDATE', 'CHANGE_PERMISSIONS'])
           archived = synapseutils.copy(syn, writeup.entityId, archive.id)
           annot = {"archived": archived.get(writeup.entityId)}
           with open(args.results, "w") as out:
