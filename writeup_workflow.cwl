@@ -26,7 +26,7 @@ inputs:
   - id: synapseConfig
     type: File
   - id: admin
-    valueFrom: "v.chung"
+    default: "v.chung"
 
 # there are no output at the workflow engine level.  Everything is uploaded to Synapse
 outputs: []
