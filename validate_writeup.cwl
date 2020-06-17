@@ -49,7 +49,7 @@ outputs:
     outputBinding:
       glob: results.json
       loadContents: true
-      outputEval: $(JSON.parse(self[0].contents)['writeup_status'])
+      outputEval: $(JSON.parse(self[0].contents)['writeup_status'].join("\n"))
 
   - id: invalid_reasons
     type: string[]
