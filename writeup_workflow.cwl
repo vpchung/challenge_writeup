@@ -25,6 +25,8 @@ inputs:
     type: string
   - id: synapseConfig
     type: File
+  - id: admin
+    valueFrom: "v.chung"
 
 # there are no output at the workflow engine level.  Everything is uploaded to Synapse
 outputs: []
@@ -33,11 +35,11 @@ steps:
   validate:
     run: validate_writeup.cwl
     in:
-      - id: submission_id
-        source: "#submissionId"
       - id: synapse_config
         source: "#synapseConfig"
-      - id: project_id
+      - id: submissionid
+        source: "#submissionId"
+      - id: challengewiki
         valueFrom: "syn18065891"
       - id: public
         default: true
@@ -47,7 +49,7 @@ steps:
       - id: invalid_reasons
   
   validation_email:
-    run: https://raw.githubusercontent.com/Sage-Bionetworks/ChallengeWorkflowTemplates/v2.2/validate_email.cwl
+    run: https://raw.githubusercontent.com/Sage-Bionetworks/ChallengeWorkflowTemplates/v2.6/validate_email.cwl
     in:
       - id: submissionid
         source: "#submissionId"
@@ -62,7 +64,7 @@ steps:
     out: [finished]
 
   annotate_validation_with_output:
-    run: https://raw.githubusercontent.com/Sage-Bionetworks/ChallengeWorkflowTemplates/v2.2/annotate_submission.cwl
+    run: https://raw.githubusercontent.com/Sage-Bionetworks/ChallengeWorkflowTemplates/v2.6/annotate_submission.cwl
     in:
       - id: submissionid
         source: "#submissionId"
@@ -77,7 +79,7 @@ steps:
     out: [finished]
 
   check_status:
-    run: https://raw.githubusercontent.com/Sage-Bionetworks/ChallengeWorkflowTemplates/v2.2/check_status.cwl
+    run: https://raw.githubusercontent.com/Sage-Bionetworks/ChallengeWorkflowTemplates/v2.6/check_status.cwl
     in:
       - id: status
         source: "#validate/status"
@@ -95,12 +97,12 @@ steps:
       - id: synapse_config
         source: "#synapseConfig"
       - id: admin
-        valueFrom: "3401978"
+        source: "#admin"
     out:
       - id: results
 
   annotate_archive_with_output:
-    run: https://raw.githubusercontent.com/Sage-Bionetworks/ChallengeWorkflowTemplates/v2.2/annotate_submission.cwl
+    run: https://raw.githubusercontent.com/Sage-Bionetworks/ChallengeWorkflowTemplates/v2.6/annotate_submission.cwl
     in:
       - id: submissionid
         source: "#submissionId"
