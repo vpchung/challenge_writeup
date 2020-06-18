@@ -20,6 +20,8 @@ inputs:
     type: string
   - id: synapse_config
     type: File
+  - id: check_validation_finished
+    type: boolean?
 
 arguments:
   - valueFrom: $(inputs.synapse_config.path)
